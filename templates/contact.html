@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}mguglielmo{% endblock %}
+
+{% block content %}
+
+<h1>Send me an Email!</h2>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Your Email Address</label>
+  <input type="email" class="form-control" id="sendMeEmailUsersEmail" placeholder="your_email@example.com">
+</div>
+<div class="mb-3">
+  <label for="sendMeEmailBody" class="form-label">Message</label>
+  <textarea class="form-control" id="sendMeEmailBody" rows="3"></textarea>
+</div>
+
+{% endblock %}

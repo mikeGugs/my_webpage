@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}mguglielmo{% endblock %}
+
+{% block content %}
+<div class="mb-auto mt-auto px-3">
+  <h1>Welcome to My Web Page!</h1>
+  <p class="lead">Here you will find some of my projects that either make my life easier, or are based on topics I'm generally interested in.</p>
+</div>
+{% endblock %}

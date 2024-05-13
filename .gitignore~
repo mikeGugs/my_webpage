@@ -1,0 +1,4 @@
+
+./virtualenv/
+./instance/config.py
+./database.db
