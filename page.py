@@ -33,9 +33,9 @@ def projects():
         j = jobs.read()
     return render_template('job_board_scraper.html', jobs=j)
 
-@app.route('/blog_landing')
-def blog_landing():
-    return render_template('blog_landing.html')
+@app.route('/about_me')
+def about_me():
+    return render_template('about_me.html')
 
 @app.route('/contact', methods=('GET', 'POST'))
 def contact():

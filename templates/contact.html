@@ -4,15 +4,22 @@
 
 {% block content %}
 
-<h1>Send me an Email!</h2>
+<div class="send-me-email mb-auto mt-auto px-3">
+  <h1>Send me an Email!</h2>
 
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Your Email Address</label>
-  <input type="email" class="form-control" id="sendMeEmailUsersEmail" placeholder="your_email@example.com">
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Your Email Address</label>
+    <input type="email" class="form-control" id="sendMeEmailUsersEmail" placeholder="your_email@example.com">
+  </div>
+  <div class="mb-3">
+    <label for="sendMeEmailBody" class="form-label">Message</label>
+    <textarea class="form-control" id="sendMeEmailBody" rows="3"></textarea>
+  </div>
 </div>
-<div class="mb-3">
-  <label for="sendMeEmailBody" class="form-label">Message</label>
-  <textarea class="form-control" id="sendMeEmailBody" rows="3"></textarea>
+
+<div id="my-linkedin" class="mb-auto mt-auto px3">
+  <p>My Linkedin:</p>
+  <a href="https://www.linkedin.com/in/michaelguglielmo1/">https://www.linkedin.com/in/michaelguglielmo1/</a>
 </div>
 
 {% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}mguglielmo{% endblock %}
+
+{% block content %}
+
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-6">
+      <p class="lead text-start">
+	Hi &#128075; I'm Michael Guglielmo,
+      </p>
+      <p class="text-start">Thanks for visiting my personal website!</p>
+      <p class="text-start">I'm building this website partly as a learning exercise, and partly to share things I've built that I found useful.</p>
+      <p class="text-start">My educational background lies mostly in Finance. My professional background straddles execution trading, operations, and production support for automated trading systems. I've found it both enjoyable and useful to expand my technical skills. Ideally I'll be able to grow into a professional role where I can leverage programming to improve trading systems in some capacity.</p>
+      <p class="text-start">I'd be happy to connect with like-minded professionals, or anyone who has comments/ questions/ concerns about what you find here!</p>
+      <p class="text-start">Sincerely,</p>
+      <p class="text-start">- Mike </p>      
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>
+
+
+
+
+{% endblock %}
