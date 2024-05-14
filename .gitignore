@@ -1,4 +1,4 @@
 
 virtualenv/
-instance/config.py
+instance/
 database.db
