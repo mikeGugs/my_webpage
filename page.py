@@ -29,7 +29,7 @@ def index():
 
 @app.route('/job_board_scraper', methods=('GET', 'POST'))
 def projects():
-    with open('/Users/MikeGuglielmo/Desktop/python_code.py/job_board_scraper/new_jobs') as jobs:
+    with open(app.config['NEW_JOBS_PATH']) as jobs:
         j = jobs.read()
     return render_template('job_board_scraper.html', jobs=j)
 
