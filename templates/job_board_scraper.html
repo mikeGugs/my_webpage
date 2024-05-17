@@ -7,7 +7,20 @@
   <h1 class="display-1">Job Board Scraper</h1>
 </div>
 <hr>
-
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+  <strong>Error:</strong> {{ error }}</p>
+</div>
+{% endif %}
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header">
@@ -71,13 +84,14 @@
       <div class="accordion-body">
 	<h2>Enter your email to receive an email each day with new jobs!</h2>
 	<p><strong>Emails are sent at 3:15pm</strong></p>
-	<form>
+	<form method="POST" action="/job_board_scraper">
 	  <div class="row">
 	    <div class="col-sm"></div>
 	    <div class="col-sm">
 	      <div class="input-group mb-3 w-30">
-		<input type="email" id="email" class="form-control" placeholder="your_email@example.com" aria-label="Email" aria-describedby="basic-addon1">
-		<button type="submit" class="btn btn-primary btn-md">Sign up</button>
+		{{ form.csrf_token }}
+		{{ form.email(class_="form-control", placeholder="your_email@example.com", size=20) }}
+		<input type="submit" class="btn btn-primary btn-md" value="Sign up">
 	      </div>
 	    </div>
 	    <div class="col-sm"></div>
