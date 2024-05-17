@@ -57,6 +57,9 @@ def job_board_scraper():
                 email = JobBoardScraperEmails(email=form.email.data)
                 db.session.add(email)
                 db.session.commit()
+                message = f"New subscriber: {email}"
+                msg_subject = f"New Job Board Scraper Email Subscriber!"
+                send_me_email(email, msg_subject, message)
                 flash("Thank you for subscribing!")
             else:
                 error = f"{form.email.data} is already subscribed!"
@@ -95,7 +98,8 @@ def contact():
       if form.validate_on_submit():
           user_email = form.user_email.data
           message = form.message.data
-          send_me_email(user_email, message)
+          msg_subject = f"You have a new email from {user_email}"
+          send_me_email(user_email, msg_subject, message)
           flash("Thanks for sending me a message!")
       else:
           error = f"{form.user_email.data} is not a valid email address. Please enter a valid email address."
@@ -106,9 +110,8 @@ def send_async_email(msg, app):
     with app.app_context():
         mail.send(msg)
 
-def send_me_email(from_email, message):
+def send_me_email(from_email, msg_subject, message):
     app = current_app._get_current_object()
-    msg_subject = f"You have a new email from {from_email}"
     msg = Message(sender=app.config['MAIL_SENDER'],
                   recipients=[app.config['RECIPIENT_EMAIL']],
                   body=message,
