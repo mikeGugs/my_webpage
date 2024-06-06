@@ -18,8 +18,8 @@
     <!-- Bootstrap -->    
     {%- endblock styles %}
     {%- endblock head %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='mg_favicon.ico') }}" type="image/x-icon">
-    <link rel="icon" href="{{ url_for('static', filename='mg_favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}"
   </head>
   <body{% block body_attribs %} class="d-flex h-100 text-center text-bg-dark" {% endblock body_attribs %}>
     {% block body -%}
@@ -29,8 +29,11 @@
 	<nav class="navbar navbar-expand-lg bg-primary bg-gradient text-dark">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/">
-	    <img src="{{ url_for('static', filename='brand_img.png')}}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+	    <img src="{{ url_for('static', filename='brand_img.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
 	    mguglielmo</a>
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle nagivation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav ms-auto mb-2">
 		<li class="nav-item dropdown">
@@ -44,9 +47,6 @@
 		<li class="nav-item">
 		  <a class="nav-link" href="/about_me">About Me</a>
 		</li>		
-		<li class="nav-item">
-		  <a class="nav-link" href="/blog_landing">Blog</a>
-		</li>
 		<li class="nav-item">
 		  <a class="nav-link" href="/contact">Contact</a>
 		</li>
