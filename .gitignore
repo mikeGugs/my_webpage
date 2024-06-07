@@ -3,3 +3,5 @@ virtualenv/
 instance/
 database.db
 notes
+config.py
+.env
