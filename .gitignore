@@ -5,3 +5,6 @@ database.db
 notes
 config.py.bak
 .env
+*~
+__pycache__
+/tests/testing_database.db
