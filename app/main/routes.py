@@ -10,6 +10,10 @@ from app.utils import send_async_email, send_me_email
 def index():
     return render_template('home.html')
 
+@bp.route('/bond_portfolio_analyzer', methods=('GET', 'POST'))
+def bond_portfolio_analyzer():
+    return render_template('bond_portfolio_analyzer.html')
+
 @bp.route('/job_board_scraper', methods=('GET', 'POST'))
 def job_board_scraper():
     with open(current_app.config['NEW_JOBS_PATH']) as jobs:
