@@ -1,7 +1,7 @@
 from app.main import bp
 from flask import Flask, render_template, url_for, request, redirect, session, flash, current_app
 from app.extensions import db
-from app.models.jbs_subscriptions import JobBoardScraperEmails
+from app.models import JobBoardScraperEmails
 from app.forms.forms import JobBoardScraperEmailForm, SendMeEmailForm
 from app.utils import send_async_email, send_me_email
 

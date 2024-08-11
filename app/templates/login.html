@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}mguglielmo{% endblock %}
+
+{% block content %}
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+<div class="mb-auto mt-auto px-3">
+  <h1 class="h3 mb-3 fw-normal">Login</h1>
+  <form method="POST" action="/login">
+    <div class="row">
+      <div class="col-sm"></div>
+      <div class="col-sm">
+	<div class="input-group mb-3">
+	  {{ form.csrf_token }}
+	  {{ form.username(class_="form-control", placeholder="username", size=30) }}
+	</div>
+	<div class="input-group mb-3">
+	  {{ form.password(class_="form-control", placeholder="password") }}
+	</div>
+	<input type="submit" class="btn btn-primary btn-md" value="Login">
+	<p>If you don't have an account, you can sign up <a href="/signup">here</a></p>	
+      </div>
+      <div class="col-sm"></div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

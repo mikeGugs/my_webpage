@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}mguglielmo{% endblock %}
+
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+<div class="mb-auto mt-auto px-3">
+  <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+  <form method="POST" action="/signup">
+    <div class="container text-center">
+      <div class="row justify-content-md-center">
+	<div class="col-sm-4">
+	  <label class="form-label" for="username">username</label>
+	  <div class="input-group mb-3">
+	    {{ form.csrf_token }}
+	    {{ form.username(class_="form-control", id='username', placeholder="username", size=30) }}
+	  </div>
+	</div>
+      </div>
+      <div class="row justify-content-md-center">
+	<div class="col-sm-4">
+	  <label class="form-label" for="email">email address</label>
+	  <div class="input-group mb-3">
+	    {{ form.email(class_="form-control", id="email",  placeholder="your_email@address.com") }}
+	  </div>
+	</div>
+      <div class="row justify-content-md-center">      
+	<div class="col-sm-4">
+	  <label class="form-label" for="full_name">full name</label>
+	  <div class="input-group mb-3">
+	    {{ form.full_name(class_="form-control", id="full_name", placeholder="Robert Paulson") }}
+	  </div>
+	</div>
+      </div>
+      <div class="row justify-content-md-center">    
+	<div class="col-sm-4">
+	  <label class="form-label" for="password">password</label>
+	  <div class="input-group mb-3">
+	    {{ form.password(class_="form-control", id="password",  placeholder="password") }}
+	  </div>
+	</div>
+      </div>
+      <div class="row justify-content-md-center">    
+	<div class="col-sm-4">
+	  <label class="form-label" for="confirm">confirm password</label>
+	  <div class="input-group mb-3">
+	    {{ form.confirm(class_="form-control", id="confim", placeholder="confirm password") }}
+	  </div>
+	</div>
+      </div>
+      <div class="row justify-content-md-center">
+	<div class="col-sm-4">
+	  <input type="submit" class="btn btn-primary btn-md" value="Sign Up">
+	</div>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
