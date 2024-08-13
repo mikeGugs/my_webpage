@@ -21,9 +21,6 @@ class BondPortfolio:
 
     def add_bond(self, cusip: str, notional: int, purchase_price: float):
         """type is discount or coupon"""
-        # Going to leave the ability to add same cusip on two lines
-        # this way can caluclate pnl correctly
-        # only thing it doesn't have is purchase date. then would be able to plot pnl over time
         if cusip in self.bond_closing_prices.keys()\
                 and type(notional) == int and \
                 (type(purchase_price) == int or type(purchase_price) == float):
@@ -42,7 +39,6 @@ class BondPortfolio:
             return f"Unable to add {cusip} for unknown reason. Please check your inputs, and try again"
 
     def remove_bond(self, bond_id):
-        # use radio button in html to do this
         to_delete = self.session.scalars(select(Bonds).where(
             Bonds.id == bond_id,
                                 )).first()

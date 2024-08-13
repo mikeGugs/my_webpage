@@ -37,7 +37,6 @@ def signup():
 
 @auth_bp.route('/signup', methods=['POST'])
 def signup_post():
-    # NEED TO MAKE THIS PAGE SHOW CORRECT ERRORS
     username = request.form.get('username')
     email = request.form.get('email')
     full_name = request.form.get('full_name')
@@ -75,7 +74,7 @@ def bond_portfolio_analysis():
     load_dotenv()
     engine = create_engine(os.environ.get('DATABASE_LOCATION'))
     session = Session(engine)
-    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') # NEED TO UPDATE THIS IN DOTENV IN PRODUCTION
+    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') 
     bond_data = prepare_bonds_data(TREASURY_PRICES_URL, prev_closing_prices)
     bp = BondPortfolio(bond_data, session, cur_user)
     matured_message = bp.clean_matured_bonds()
@@ -111,7 +110,7 @@ def add_bonds():
     load_dotenv()
     engine = create_engine(os.environ.get('DATABASE_LOCATION'))
     session = Session(engine)
-    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') # NEED TO UPDATE THIS IN DOTENV IN PRODUCTION
+    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') 
     bond_data = prepare_bonds_data(TREASURY_PRICES_URL, prev_closing_prices)
     bp = BondPortfolio(bond_data, session, cur_user)
     current_holdings = bp.get_current_portfolio_holdings()
@@ -132,7 +131,7 @@ def add_bonds_post():
     load_dotenv()
     engine = create_engine(os.environ.get('DATABASE_LOCATION'))
     session = Session(engine)
-    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') # NEED TO UPDATE THIS IN DOTENV IN PRODUCTION
+    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') 
     bond_data = prepare_bonds_data(TREASURY_PRICES_URL, prev_closing_prices)
     bp = BondPortfolio(bond_data, session, cur_user)
     cusip = request.form.get('cusip')
@@ -152,7 +151,7 @@ def remove_bonds():
     load_dotenv()
     engine = create_engine(os.environ.get('DATABASE_LOCATION'))
     session = Session(engine)
-    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') # NEED TO UPDATE THIS IN DOTENV IN PRODUCTION
+    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') 
     bond_data = prepare_bonds_data(TREASURY_PRICES_URL, prev_closing_prices)
     bp = BondPortfolio(bond_data, session, cur_user)
     current_holdings = bp.get_current_portfolio_holdings()
@@ -172,7 +171,7 @@ def remove_bonds_post():
     load_dotenv()
     engine = create_engine(os.environ.get('DATABASE_LOCATION'))
     session = Session(engine)
-    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') # NEED TO UPDATE THIS IN DOTENV IN PRODUCTION
+    prev_closing_prices = os.environ.get('BOND_CLOSING_PRICES_LOCATION') 
     bond_data = prepare_bonds_data(TREASURY_PRICES_URL, prev_closing_prices)
     bp = BondPortfolio(bond_data, session, cur_user)
     to_remove = request.form.getlist('to_remove')
