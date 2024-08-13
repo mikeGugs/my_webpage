@@ -3,9 +3,14 @@
 {% block title %}mguglielmo{% endblock %}
 
 {% block content %}
-{% if error %}
-<p>{{ error }}</p>
-{% endif %}
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert alert-danger">
+      {{ messages[0] }}
+    </div>
+  {% endif %}
+{% endwith %}    
+
 <div class="mb-auto mt-auto px-3">
   <h1 class="h3 mb-3 fw-normal">Login</h1>
   <form method="POST" action="/login">
@@ -17,7 +22,7 @@
 	  {{ form.username(class_="form-control", placeholder="username", size=30) }}
 	</div>
 	<div class="input-group mb-3">
-	  {{ form.password(class_="form-control", placeholder="password") }}
+	  {{ form.password(class_="form-control") }}
 	</div>
 	<input type="submit" class="btn btn-primary btn-md" value="Login">
 	<p>If you don't have an account, you can sign up <a href="/signup">here</a></p>	

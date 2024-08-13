@@ -6,9 +6,9 @@
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 {% for message in messages %}
-<div class="alert alert-success" role="alert">
-  {{ message }}
-</div>
+  <div class="alert alert-danger" role="alert">
+    {{ message }} or go to <a href="{{ url_for('auth.login') }}">login page</a>
+  </div>
 {% endfor %}
 {% endif %}
 {% endwith %}
@@ -23,7 +23,7 @@
       <div class="row justify-content-md-center">
 	<div class="col-sm-4">
 	  <label class="form-label" for="username">username</label>
-	  <div class="input-group mb-3">
+	  <div class="input-group mb-3 text-bg-dark">
 	    {{ form.csrf_token }}
 	    {{ form.username(class_="form-control", id='username', placeholder="username", size=30) }}
 	  </div>
@@ -36,6 +36,7 @@
 	    {{ form.email(class_="form-control", id="email",  placeholder="your_email@address.com") }}
 	  </div>
 	</div>
+      </div>
       <div class="row justify-content-md-center">      
 	<div class="col-sm-4">
 	  <label class="form-label" for="full_name">full name</label>
@@ -48,7 +49,7 @@
 	<div class="col-sm-4">
 	  <label class="form-label" for="password">password</label>
 	  <div class="input-group mb-3">
-	    {{ form.password(class_="form-control", id="password",  placeholder="password") }}
+	    {{ form.password(class_="form-control", id="password") }}
 	  </div>
 	</div>
       </div>

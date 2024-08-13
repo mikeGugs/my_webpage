@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, TextAreaField, PasswordField
+from wtforms import StringField, TextAreaField, PasswordField, IntegerField, DecimalField
 from wtforms.validators import DataRequired, Email, Length, EqualTo, Optional
 
 class JobBoardScraperEmailForm(FlaskForm):
@@ -25,3 +25,8 @@ class SignUpForm(FlaskForm):
                                                      ])
     confirm = PasswordField('confirm password')
                                                                       
+class AddBondsForm(FlaskForm):
+    cusip = StringField('cusip', validators=[DataRequired(), Length(min=9, max=9, message="A valid CUSIP consists of 9 characters")])
+    notional = IntegerField('notional', validators=[DataRequired()])
+    purchase_price = DecimalField('purchase_price', validators=[DataRequired()])
+

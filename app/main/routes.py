@@ -10,7 +10,7 @@ from app.utils import send_async_email, send_me_email
 def index():
     return render_template('home.html')
 
-@bp.route('/bond_portfolio_analyzer', methods=('GET', 'POST'))
+@bp.route('/bond_portfolio_analyzer')
 def bond_portfolio_analyzer():
     return render_template('bond_portfolio_analyzer.html')
 

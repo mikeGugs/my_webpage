@@ -1,6 +1,6 @@
 {% block doc -%}
 <!DOCTYPE html>
-<html{% block html_attribs %} lang="en" class="h-100"{% endblock html_attribs %}>
+<html{% block html_attribs %} lang="en" class="h-100" data-bs-theme="dark"{% endblock html_attribs %}>
 {%- block html %}
   <head>
     {%- block head %}
@@ -26,7 +26,7 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       {% block navbar %}
       <header>
-	<nav class="navbar navbar-expand-lg bg-primary bg-gradient text-dark">
+	<nav class="navbar navbar-expand-lg bg-primary bg-gradient">
 	  <div class="container-fluid">
 	    <a class="navbar-brand" href="/">
 	    <img src="{{ url_for('static', filename='brand_img.png') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
@@ -37,26 +37,40 @@
 	    <div class="collapse navbar-collapse" id="navbarNavDropdown">
 	      <ul class="navbar-nav ms-auto mb-2">
 		<li class="nav-item dropdown">
-		<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+		<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: var(--bs-light-text-emphasis)">
 		  Projects
 		</a>
 		<ul class="dropdown-menu">
 		  <li><a class="dropdown-item" href="/job_board_scraper">Job Board Scraper</a></li>
+		  {% if not current_user.is_authenticated %}
 		  <li><a class="dropdown-item" href="/bond_portfolio_analyzer">Bond Portfolio Analyzer</a></li>
+		  {% endif %}
+		  {% if current_user.is_authenticated %}
+		  <li><a class="dropdown-item" href="/bond_portfolio_analysis">Bond Portfolio Analyzer</a></li>
+		  {% endif %}
 		</ul>
 		</li>
 		<li class="nav-item">
-		  <a class="nav-link" href="/about_me">About Me</a>
+		  <a class="nav-link" href="/about_me" style="color: var(--bs-light-text-emphasis)">About Me</a>
 		</li>		
 		<li class="nav-item">
-		  <a class="nav-link" href="/contact">Contact</a>
+		  <a class="nav-link" href="/contact" style="color: var(--bs-light-text-emphasis)">Contact</a>
 		</li>
+		{% if not current_user.is_authenticated %}
         	<li class="nav-item">
-		  <a class="nav-link" href="/login">Login</a>
+		  <a class="nav-link" href="/login" style="color: var(--bs-light-text-emphasis)">Login</a>
 		</li>
+		{% if not current_user.is_authenticated %}
+        	<li class="nav-item">
+		  <a class="nav-link" href="/signup" style="color: var(--bs-light-text-emphasis)">Sign Up</a>
+		</li>
+		{% endif %}		
+		{% endif %}
+		{% if current_user.is_authenticated %}
 		<li class="nav-item">
-		  <a class="nav-link" href="/logout">Logout</a>
-		</li>		
+		  <a class="nav-link" href="/logout" style="color: var(--bs-light-text-emphasis)">Logout</a>
+		</li>
+		{% endif %}
 	      </ul>
 	    </div>
 	  </div>
