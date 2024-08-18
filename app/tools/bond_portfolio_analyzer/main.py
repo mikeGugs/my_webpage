@@ -13,7 +13,7 @@ def rewrite_prev_closing_prices(http_response_text):
     with open(os.environ.get('BOND_CLOSING_PRICES_LOCATION'), 'w') as file:
         file.write(http_response_text)
     
-def prepare_bonds_data(treasury_prices_url, prev_closing_prices):
+def prepare_bonds_data(treasury_prices_url):
     response = utils.get_page(treasury_prices_url)
     text = utils.get_page_text(response)
     if 'Current day prices are not available yet.' in text:
@@ -35,3 +35,4 @@ def calculate_portfolio_statistics(bond_portfolio: BondPortfolio):
     mod_d = bond_portfolio.calculate_portfolio_duration(modified=True)
     print(mod_d)
     print(bond_portfolio.calculate_portfolio_dv01(mod_d))
+

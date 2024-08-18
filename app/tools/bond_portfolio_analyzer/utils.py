@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import datetime
+import argparse
 
 def get_page(url):
     return requests.get(url)
@@ -67,3 +68,18 @@ def make_bond_dict(individual_bonds):
                                     }
     return bond_dict
 
+def rewrite_prev_closing_prices():
+    """cron job to rewrite prev_closing_price"""
+    TREASURY_PRICES_URL = 'https://treasurydirect.gov/GA-FI/FedInvest/todaySecurityPriceDetail'
+    response = get_page(TREASURY_PRICES_URL)
+    text = get_page_text(reponse)
+    with open(os.environ.get('BOND_CLOSING_PRICES_LOCATION'), 'w') as file:
+        file.write(http_response_text)
+
+        
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--store_prices', action='store_true')
+    args = parser.parse_args()
+    if args.store_prices:
+        rewrite_prev_closing_prices()
