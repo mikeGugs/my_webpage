@@ -72,7 +72,7 @@ def rewrite_prev_closing_prices():
     """cron job to rewrite prev_closing_price"""
     TREASURY_PRICES_URL = 'https://treasurydirect.gov/GA-FI/FedInvest/todaySecurityPriceDetail'
     response = get_page(TREASURY_PRICES_URL)
-    text = get_page_text(reponse)
+    text = get_page_text(response)
     with open(os.environ.get('BOND_CLOSING_PRICES_LOCATION'), 'w') as file:
         file.write(http_response_text)
 
