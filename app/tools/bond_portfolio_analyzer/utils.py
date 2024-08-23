@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import re
 import datetime
 import argparse
+import os
 
 def get_page(url):
     return requests.get(url)
