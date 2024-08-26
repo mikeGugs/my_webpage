@@ -75,7 +75,7 @@ def rewrite_prev_closing_prices():
     response = get_page(TREASURY_PRICES_URL)
     text = get_page_text(response)
     with open(os.environ.get('BOND_CLOSING_PRICES_LOCATION'), 'w') as file:
-        file.write(http_response_text)
+        file.write(text)
 
         
 if __name__ == "__main__":
