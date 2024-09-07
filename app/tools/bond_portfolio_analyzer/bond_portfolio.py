@@ -4,6 +4,8 @@ from app.models import User, Bonds
 from functools import cache
 from sqlalchemy import select, delete
 import logging
+import requests
+import json
 
 
 class BondPortfolio:
@@ -45,19 +47,22 @@ class BondPortfolio:
         self.session.delete(to_delete)
         self.session.commit()
 
+    def get_maturity_date(self, cusip):
+        response = self._get_treasury_api_response(filters=f"cusip:eq:{cusip}", fields="maturity_date")
+        return json.loads(response.text)['data'][0]['maturity_date']
+
     def clean_matured_bonds(self):
         matured_messages = []
         today = datetime.datetime.today()
         for bond in self.get_current_portfolio_holdings():
-            if today >= datetime.datetime.strptime(self.bond_closing_prices[bond.cusip]['maturity_date'], '%Y-%m-%d'):
+            if today >= datetime.datetime.strptime(self.get_maturity_date(bond.cusip), '%Y-%m-%d'):
                 self.remove_bond(bond.id)
-                matured_messages.append(f"{bond.cusip} has matured! Removed this from your current holdigs")
+                matured_messages.append(f"{bond.cusip} has matured! Removed this from your current holdings")
         if matured_messages:
             return matured_messages
         else:
             return None
             
-
     def get_current_portfolio_holdings(self):
         session = self._get_user_session()
         return [bond for bond in session.bonds]
@@ -74,6 +79,23 @@ class BondPortfolio:
         else:
             t_plus_one = today + datetime.timedelta(days=1)
         return t_plus_one.strftime('%Y-%m-%d')
+
+    @staticmethod
+    def _get_treasury_api_response(filters=None, fields=None):
+        """
+        Documentation at:
+        https://fiscaldata.treasury.gov/datasets/treasury-securities-auctions-data/treasury-securities-auctions-data
+        """
+        
+        base = "https://api.fiscaldata.treasury.gov/services/api/fiscal_service/v1/accounting/od/auctions_query"
+        if filters:
+            base += f"?filter={filters}"
+        if fields:
+            base += f"?fields={fields}" if not filters else f"&fields={fields}"
+        response = requests.get(base)
+            
+        return response
+        
 
     def _get_current_bond_price(self, cusip):
         if cusip not in self.bond_closing_prices.keys():
